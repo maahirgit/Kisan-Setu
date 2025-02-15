@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardMedia, CardContent, Typography, Button, Grid, Container } from "@mui/material";
-import wheatImg from "../../../assets/auth/nilotpal-kalita-pJHaHQJ0PPk-unsplash.jpg"; // Importing images
+import { useNavigate } from "react-router-dom";
+import wheatImg from "../../../assets/auth/nilotpal-kalita-pJHaHQJ0PPk-unsplash.jpg";
 import riceImg from "../../../assets/auth/jakob-rosen-0302c9LYXcE-unsplash.jpg";
 import cornImg from "../../../assets/auth/markus-spiske-iOL-0GJY-DM-unsplash.jpg";
 
@@ -32,6 +33,8 @@ const products = [
 ];
 
 const KrishiMart = () => {
+  const navigate = useNavigate();
+
   return (
     <Container sx={{ textAlign: "center", padding: 3 }}>
       <Typography variant="h4" sx={{ marginBottom: 3, fontWeight: "bold" }}>
@@ -55,7 +58,13 @@ const KrishiMart = () => {
                 <Typography variant="body2" color="text.secondary">
                   <strong>Quantity Available:</strong> {product.quantity}
                 </Typography>
-                <Button variant="contained" color="success" fullWidth sx={{ marginTop: 1 }}>
+                <Button
+                  variant="contained"
+                  color="success"
+                  fullWidth
+                  sx={{ marginTop: 1 }}
+                  onClick={() => navigate("KrishiDetail")}
+                >
                   Click to Know More
                 </Button>
               </CardContent>

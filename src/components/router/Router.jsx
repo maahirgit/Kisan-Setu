@@ -5,7 +5,10 @@ import Home from "../common/customer/Home"
 import Navbar from "../common/customer/Navbar";
 import KrishiGyan from "../common/customer/KrishiGyan";
 import KrishiMart from "../common/customer/KrishiMart";
-
+import Addtocart from "../common/customer/Addtocart"
+import Wishlist from "../common/customer/Wishlist";
+import KrishiSamachar from "../common/customer/KrishiSamachar";
+import KrishiDetail from "../common/customer/KrishiDetail";
 
 const MainRouter = ({ children }) => {
   const routesData = createBrowserRouter([
@@ -42,6 +45,26 @@ const MainRouter = ({ children }) => {
     {
         path : "KrishiMart",
         element : <KrishiMart/>,
+        errorElement : <h1>Error...</h1>
+    },
+    {
+      path : "Addtocart",
+      element : <Addtocart/>,
+      errorElement : <h1>Error...</h1>
+    },
+    {
+      path : "Wishlist",
+      element : <Wishlist/>,
+      errorElement : <h1>Error...</h1>
+    },
+    {
+        path : "KrishiSamachar",
+        element : <KrishiSamachar/>,
+        errorElement : <h1>Error...</h1>
+    },
+    {
+        path : "KrishiMart/KrishiDetail",
+        element : <KrishiDetail/>,
         errorElement : <h1>Error...</h1>
     }
     ]
