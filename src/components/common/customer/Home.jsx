@@ -14,6 +14,7 @@ import icon4 from "../../../assets/auth/Home sreen image banner.jpg";
 import icon5 from "../../../assets/auth/What-is-Subsistence-Farming-The-Scopes-Associated-Benefits-Types-930x620.jpg";
 import icon6 from "../../../assets/auth/himanshu-choudhary-Q1Ck_WFzwHA-unsplash.jpg";
 import teamImage from "../../../assets/auth/What-is-Subsistence-Farming-The-Scopes-Associated-Benefits-Types-930x620.jpg";
+import { useNavigate } from "react-router-dom";
 
 const images = [image1, image2, image3];
 const objectives = [
@@ -26,6 +27,7 @@ const objectives = [
 ];
 
 const HomePage = () => {
+  const navigate = useNavigate()
   const settings = {
     dots: true,
     infinite: true,
@@ -111,10 +113,10 @@ const HomePage = () => {
         <Typography variant="body1" sx={{ mt: 1 }}>Bridging Agriculture with Technology</Typography>
 
         <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-          <Typography variant="body2" sx={{ mx: 2, cursor: "pointer", "&:hover": { textDecoration: "underline" } }}>Home</Typography>
-          <Typography variant="body2" sx={{ mx: 2, cursor: "pointer", "&:hover": { textDecoration: "underline" } }}>About</Typography>
-          <Typography variant="body2" sx={{ mx: 2, cursor: "pointer", "&:hover": { textDecoration: "underline" } }}>Services</Typography>
-          <Typography variant="body2" sx={{ mx: 2, cursor: "pointer", "&:hover": { textDecoration: "underline" } }}>Contact</Typography>
+          <Typography variant="body2" sx={{ mx: 2, cursor: "pointer", "&:hover": { textDecoration: "underline" } }} onClick = {() => navigate("Home")}>Home</Typography>
+          <Typography variant="body2" sx={{ mx: 2, cursor: "pointer", "&:hover": { textDecoration: "underline" } }} onClick = {() => navigate("KrishiMart")}>KrishiMart</Typography>
+          <Typography variant="body2" sx={{ mx: 2, cursor: "pointer", "&:hover": { textDecoration: "underline" } }} onClick = {() => navigate("KrishiGyan")}>KrishiGyan</Typography>
+          <Typography variant="body2" sx={{ mx: 2, cursor: "pointer", "&:hover": { textDecoration: "underline" } }} onClick = {() => navigate("KrishiSamachar")}>KrishiSamachar</Typography>
         </Box>
 
         <Typography variant="body2" sx={{ mt: 2 }}>Empowering Farmers | Sustainable Growth | Market Connectivity</Typography>
