@@ -9,6 +9,7 @@ import Addtocart from "../common/customer/Addtocart"
 import Wishlist from "../common/customer/Wishlist";
 import KrishiSamachar from "../common/customer/KrishiSamachar";
 import KrishiDetail from "../common/customer/KrishiDetail";
+import SignUpPage from "../common/auth/Signup";
 
 const MainRouter = ({ children }) => {
   const routesData = createBrowserRouter([
@@ -17,6 +18,13 @@ const MainRouter = ({ children }) => {
       path: "/Login",
       element: <LoginPage/>, // "/admin" directly renders LoginPage
       errorElement: <h1>Error...</h1>,
+    },
+    {
+      
+        path : "Signup",
+        element : <SignUpPage/>,
+        errorElement : <h1>Error..</h1>
+      
     },
     {
         path : "/",
@@ -66,7 +74,8 @@ const MainRouter = ({ children }) => {
         path : "KrishiMart/KrishiDetail",
         element : <KrishiDetail/>,
         errorElement : <h1>Error...</h1>
-    }
+    },
+    
     ]
     },
     {
