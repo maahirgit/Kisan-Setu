@@ -68,7 +68,7 @@ const SignUpPage = () => {
         </Typography>
 
         {/* Social Sign-Up Buttons */}
-        <Button variant="outlined" startIcon={<GoogleIcon />} sx={{ width: "80%", my: 1 }}>
+        {/* <Button variant="outlined" startIcon={<GoogleIcon />} sx={{ width: "80%", my: 1 }}>
           Sign up with Google
         </Button>
         <Button variant="outlined" startIcon={<FacebookIcon />} sx={{ width: "80%", my: 1 }}>
@@ -77,7 +77,7 @@ const SignUpPage = () => {
 
         <Typography variant="body2" sx={{ my: 2 }}>
           — or sign up with email —
-        </Typography>
+        </Typography> */}
 
         {/* Input Fields */}
         <form onSubmit={handleSubmit(handleSignUp)} style={{width : "80%"}}>
@@ -120,9 +120,9 @@ const SignUpPage = () => {
         />
 
         {/* Terms & Conditions */}
-        <Box sx={{ display: "flex", justifyContent: "space-between", width: "80%", my: 1 }}>
+      {/*   <Box sx={{ display: "flex", justifyContent: "space-between", width: "80%", my: 1 }}>
           <FormControlLabel control={<Checkbox />} label="I agree to the Terms & Conditions" />
-        </Box>
+        </Box> */}
 
         {/* Sign-Up Button */}
         <Button type="submit" variant="contained" color="success" sx={{ width: "100%", my: 2 }}>

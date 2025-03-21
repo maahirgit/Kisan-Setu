@@ -88,8 +88,8 @@ const LoginPage = () => {
             "Join the bridge to better farming, Welcome to KisanSetu !!"
           </Typography>
 
-          {/* Social Login Buttons */}
-          <Button variant="outlined" startIcon={<GoogleIcon />} sx={{ width: "80%", my: 1 }}>
+         {/*  {/* Social Login Buttons */}
+          {/* <Button variant="outlined" startIcon={<GoogleIcon />} sx={{ width: "80%", my: 1 }}>
             Google
           </Button>
           <Button variant="outlined" startIcon={<FacebookIcon />} sx={{ width: "80%", my: 1 }}>
@@ -98,7 +98,7 @@ const LoginPage = () => {
 
           <Typography variant="body2" sx={{ my: 2 }}>
             — or continue with email —
-          </Typography>
+          </Typography>  */}
 
           {/* Input Fields */}
           <form onSubmit={handleSubmit(onSubmit)} style={{ width: "80%" }}>
@@ -123,7 +123,7 @@ const LoginPage = () => {
             />
 
             {/* Remember Me & Forgot Password */}
-            <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%", my: 1 }}>
+            {/* <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%", my: 1 }}>
               <FormControlLabel 
                 control={<Checkbox checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} />} 
                 label="Remember me" 
@@ -131,7 +131,7 @@ const LoginPage = () => {
               <Typography variant="body2" color="primary" sx={{ cursor: "pointer" }}>
                 Forgot Password?
               </Typography>
-            </Box>
+            </Box> */}
 
             {/* Login Button */}
             <Button type="submit" variant="contained" color="success" sx={{ width: "100%", my: 2 }}>

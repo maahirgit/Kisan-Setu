@@ -71,7 +71,7 @@ const MainRouter = ({ children }) => {
         errorElement : <h1>Error...</h1>
     },
     {
-        path : "KrishiMart/KrishiDetail",
+        path : "KrishiMart/KrishiDetail/:id",
         element : <KrishiDetail/>,
         errorElement : <h1>Error...</h1>
     },

@@ -1,13 +1,31 @@
 import React, { useState } from "react";
-import { AppBar, Toolbar, Typography, Box, IconButton } from "@mui/material";
+import { AppBar, Toolbar, Typography, Box, IconButton, Menu, MenuItem, Avatar } from "@mui/material";
 import { Favorite, ShoppingCart } from "@mui/icons-material";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import logo from "../../../assets/auth/KISANSETU-logo-png.png";
 
 const navItems = ["Home", "KrishiMart", "KrishiGyan", "KrishiSamachar"];
 
 const Navbar = () => {
   const [selected, setSelected] = useState("Home");
+  const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
+
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("userId"); // Remove userId from localStorage
+    navigate("/login"); // Redirect to login page
+    handleMenuClose();
+  };
+
+  const isMenuOpen = Boolean(anchorEl);
 
   return (
     <>
@@ -43,14 +61,30 @@ const Navbar = () => {
             ))}
           </Box>
 
-          {/* Right - Wishlist & Cart Icons */}
-          <Box sx={{ display: "flex", gap: "10px" }}>
+          {/* Right - Icons (Wishlist, Cart, User Profile) */}
+          <Box sx={{ display: "flex", gap: "10px", alignItems: "center" }}>
             <IconButton component={Link} to="/wishlist">
               <Favorite sx={{ color: "white" }} />
             </IconButton>
             <IconButton component={Link} to="/addtocart">
               <ShoppingCart sx={{ color: "white" }} />
             </IconButton>
+
+            {/* User Profile Button */}
+            <IconButton onClick={handleProfileMenuOpen}>
+              <Avatar sx={{ bgcolor: "white", color: "#2E7D32" }}>U</Avatar>
+            </IconButton>
+
+            {/* Profile Dropdown Menu */}
+            <Menu
+              anchorEl={anchorEl}
+              open={isMenuOpen}
+              onClose={handleMenuClose}
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              transformOrigin={{ vertical: "top", horizontal: "right" }}
+            >
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            </Menu>
           </Box>
         </Toolbar>
       </AppBar>
