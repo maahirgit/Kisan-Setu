@@ -13,7 +13,7 @@ const KrishiDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/product/getProductById/${id}`);
+        const response = await axios.get(`/product/getProductById/${id}`);
         console.log("Fetched Product Data:", response.data);
         setProduct(response.data.data);
         console.log("Product ID Type:", typeof id); // Debugging: Print type of Product ID
@@ -56,7 +56,7 @@ const KrishiDetail = () => {
     console.log("Order Data Being Sent:", orderData); // Debugging: Print the entire order data
 
     try {
-      const response = await axios.post("http://localhost:3001/order/createOrder", orderData);
+      const response = await axios.post("/order/createOrder", orderData);
       console.log("Order Placed Successfully:", response.data);
       alert("Order placed successfully!");
     } catch (error) {

@@ -8,7 +8,7 @@ const KrishiGyan = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/article/getArticle");
+        const response = await axios.get("/article/getArticle");
         setArticles(response.data.data); // Assuming your API response format is { message: '...', data: [...] }
       } catch (error) {
         console.error("Error fetching articles: ", error);
