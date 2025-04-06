@@ -3,6 +3,7 @@ import { Box, Typography, Button, IconButton, TextField } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 const KrishiDetail = () => {
   const [product, setProduct] = useState(null);
@@ -16,7 +17,7 @@ const KrishiDetail = () => {
         const response = await axios.get(`/product/getProductById/${id}`);
         console.log("Fetched Product Data:", response.data);
         setProduct(response.data.data);
-        console.log("Product ID Type:", typeof id); // Debugging: Print type of Product ID
+        console.log("Product ID Type:", typeof id);
       } catch (error) {
         console.error("Error fetching product:", error);
       }
@@ -30,20 +31,24 @@ const KrishiDetail = () => {
   }
 
   const handleOrderNow = async () => {
-    let userId = localStorage.getItem("userId"); // Retrieve userId from localStorage
+    let userId;
+    const token = localStorage.getItem("token");
 
-    console.log("User ID Type Before:", typeof userId); // Debugging: Print type of User ID
-    console.log("User ID Value Before:", userId); // Debugging: Print value of User ID
-
-    // Check if userId is a valid ObjectId format; if not, generate a random valid ObjectId for testing
-    if (!/^[a-fA-F0-9]{24}$/.test(userId)) {
-      console.warn("Invalid User ID format. Generating a temporary valid ID for testing...");
-      userId = "64b3f76a1c9a5b0012345678"; // Example of a valid ObjectId
-      localStorage.setItem("userId", userId); // Store the corrected userId in localStorage
+    if (token) {
+      try {
+        const decodedToken = jwt_decode(token);
+        userId = decodedToken.userId;
+        console.log("Decoded User ID:", userId);
+      } catch (error) {
+        console.error("Error decoding token:", error);
+        alert("Invalid token or user not logged in.");
+        return;
+      }
+    } else {
+      console.warn("Token not found. User ID cannot be extracted.");
+      alert("Please login to place an order.");
+      return;
     }
-
-    console.log("User ID Type After:", typeof userId); // Debugging: Print type of User ID
-    console.log("User ID Value After:", userId); // Debugging: Print value of User ID
 
     const orderData = {
       Product_id: id,
@@ -53,7 +58,7 @@ const KrishiDetail = () => {
       Total_price: parseInt(orderQuantity) * product.Price,
     };
 
-    console.log("Order Data Being Sent:", orderData); // Debugging: Print the entire order data
+    console.log("Order Data Being Sent:", orderData);
 
     try {
       const response = await axios.post("/order/createOrder", orderData);
