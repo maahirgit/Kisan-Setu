@@ -63,9 +63,9 @@ const Navbar = () => {
 
           {/* Right - Icons (Wishlist, Cart, User Profile) */}
           <Box sx={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <IconButton component={Link} to="/wishlist">
+            {/* <IconButton component={Link} to="/wishlist">
               <Favorite sx={{ color: "white" }} />
-            </IconButton>
+            </IconButton> */}
             <IconButton component={Link} to="/addtocart">
               <ShoppingCart sx={{ color: "white" }} />
             </IconButton>

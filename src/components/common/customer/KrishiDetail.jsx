@@ -59,7 +59,7 @@ const KrishiDetail = () => {
     console.log("Cart Data Being Sent:", cartData);
 
     try {
-      const response = await axios.post("/cart/addToCart", cartData);
+      const response = await axios.post("/cart/createCart", cartData);
       console.log("Product Added to Cart:", response.data);
       alert("Product added to cart!");
       navigate("/AddToCart");
@@ -132,11 +132,6 @@ const KrishiDetail = () => {
           </Button>
         </Box>
 
-        <Box display="flex" gap={2} alignItems="center">
-          <IconButton sx={{ color: "green" }} onClick={() => navigate("/Wishlist")}>
-            <FavoriteBorderIcon />
-          </IconButton>
-        </Box>
       </Box>
     </Box>
   );

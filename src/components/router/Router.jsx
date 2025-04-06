@@ -11,6 +11,8 @@ import KrishiSamachar from "../common/customer/KrishiSamachar";
 import KrishiDetail from "../common/customer/KrishiDetail";
 import SignUpPage from "../common/auth/Signup";
 import AdminPage from "../common/customer/AdminPage";
+import VendorDashboard from "../common/customer/VendorDashboard";
+import AddProduct from "../common/customer/AddProduct"
 
 const MainRouter = ({ children }) => {
   const routesData = createBrowserRouter([
@@ -68,6 +70,7 @@ const MainRouter = ({ children }) => {
           element: <KrishiSamachar />,
           errorElement: <h1>Error...</h1>,
         },
+        
         {
           path: "KrishiMart/KrishiDetail/:id",
           element: <KrishiDetail />,
@@ -83,6 +86,16 @@ const MainRouter = ({ children }) => {
     {
       path: "/admin/*", // Corrected path
       element: <AdminPage />,
+      errorElement: <h1>Error...</h1>,
+    },
+    {
+      path: "VendorDashboard",
+      element: <VendorDashboard />,
+      errorElement: <h1>Error...</h1>,
+    },
+    {
+      path: "AddProduct",
+      element: <AddProduct />,
       errorElement: <h1>Error...</h1>,
     },
     {
