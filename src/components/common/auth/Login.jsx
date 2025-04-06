@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useForm } from 'react-hook-form';
 import { Grid, Typography, Button, TextField, Checkbox, FormControlLabel, Box } from "@mui/material";
-import GoogleIcon from "@mui/icons-material/Google";
-import FacebookIcon from "@mui/icons-material/Facebook";
 import FarmerIllustration from "../../../assets/auth/farm-lifestyle-digital-art.jpg";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -19,10 +17,16 @@ const LoginPage = () => {
       const response = await axios.post("user/loginUser", data);
 
       if (response.status === 200) {
+        // Store the token in localStorage
+        localStorage.setItem("token", response.data.token);
+
+        // Debugging: Check if the token is stored
+        console.log("Token stored in localStorage:", localStorage.getItem("token"));
+
         toast.success("Login Successful", {
           className: "toast-success",
           autoClose: 2000,
-          hideProgressBar: false
+          hideProgressBar: false,
         });
 
         setTimeout(() => {
@@ -35,26 +39,26 @@ const LoginPage = () => {
           toast.error("User not found. Please register first", {
             className: "toast-error",
             autoClose: 3000,
-            hideProgressBar: false
+            hideProgressBar: false,
           });
         } else if (err.response.status === 401) {
           toast.error("Incorrect password. Please try again.", {
             className: "toast-error",
             autoClose: 3000,
-            hideProgressBar: false
+            hideProgressBar: false,
           });
         } else {
           toast.error("Login failed. Please try again later.", {
             className: "toast-error",
             autoClose: 3000,
-            hideProgressBar: false
+            hideProgressBar: false,
           });
         }
       } else {
         toast.error("Network error. Please check your connection.", {
           className: "toast-error",
           autoClose: 3000,
-          hideProgressBar: false
+          hideProgressBar: false,
         });
       }
       console.log("Login failed", err);
@@ -88,18 +92,6 @@ const LoginPage = () => {
             "Join the bridge to better farming, Welcome to KisanSetu !!"
           </Typography>
 
-         {/*  {/* Social Login Buttons */}
-          {/* <Button variant="outlined" startIcon={<GoogleIcon />} sx={{ width: "80%", my: 1 }}>
-            Google
-          </Button>
-          <Button variant="outlined" startIcon={<FacebookIcon />} sx={{ width: "80%", my: 1 }}>
-            Facebook
-          </Button>
-
-          <Typography variant="body2" sx={{ my: 2 }}>
-            — or continue with email —
-          </Typography>  */}
-
           {/* Input Fields */}
           <form onSubmit={handleSubmit(onSubmit)} style={{ width: "80%" }}>
             <TextField
@@ -122,23 +114,12 @@ const LoginPage = () => {
               helperText={errors.password?.message}
             />
 
-            {/* Remember Me & Forgot Password */}
-            {/* <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%", my: 1 }}>
-              <FormControlLabel 
-                control={<Checkbox checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} />} 
-                label="Remember me" 
-              />
-              <Typography variant="body2" color="primary" sx={{ cursor: "pointer" }}>
-                Forgot Password?
-              </Typography>
-            </Box> */}
-
             {/* Login Button */}
             <Button type="submit" variant="contained" color="success" sx={{ width: "100%", my: 2 }}>
               LOGIN
             </Button>
           </form>
-          
+
           {/* Signup Link */}
           <Typography variant="body2">
             Don't have an account? <Typography component="span" color="primary" sx={{ cursor: "pointer" }} onClick={() => navigate("/Signup")}>Create an account</Typography>
