@@ -3,7 +3,7 @@ import { Box, Typography, Button, IconButton, TextField } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 const KrishiDetail = () => {
   const [product, setProduct] = useState(null);
@@ -30,13 +30,13 @@ const KrishiDetail = () => {
     return <Typography variant="h6">Loading...</Typography>;
   }
 
-  const handleOrderNow = async () => {
+  const handleAddToCart = async () => {
     let userId;
     const token = localStorage.getItem("token");
 
     if (token) {
       try {
-        const decodedToken = jwt_decode(token);
+        const decodedToken = jwtDecode(token);
         userId = decodedToken.userId;
         console.log("Decoded User ID:", userId);
       } catch (error) {
@@ -46,27 +46,26 @@ const KrishiDetail = () => {
       }
     } else {
       console.warn("Token not found. User ID cannot be extracted.");
-      alert("Please login to place an order.");
+      alert("Please login to add to cart.");
       return;
     }
 
-    const orderData = {
+    const cartData = {
       Product_id: id,
       User_id: userId,
       Quantity: parseInt(orderQuantity),
-      Price_per_peice: product.Price,
-      Total_price: parseInt(orderQuantity) * product.Price,
     };
 
-    console.log("Order Data Being Sent:", orderData);
+    console.log("Cart Data Being Sent:", cartData);
 
     try {
-      const response = await axios.post("/order/createOrder", orderData);
-      console.log("Order Placed Successfully:", response.data);
-      alert("Order placed successfully!");
+      const response = await axios.post("/cart/addToCart", cartData);
+      console.log("Product Added to Cart:", response.data);
+      alert("Product added to cart!");
+      navigate("/AddToCart");
     } catch (error) {
-      console.error("Error placing order:", error.response?.data || error.message);
-      alert("Failed to place order. Please try again.");
+      console.error("Error adding to cart:", error.response?.data || error.message);
+      alert("Failed to add to cart. Please try again.");
     }
   };
 
@@ -127,20 +126,13 @@ const KrishiDetail = () => {
           <Button
             variant="contained"
             sx={{ backgroundColor: "green", color: "white" }}
-            onClick={handleOrderNow}
+            onClick={handleAddToCart}
           >
-            Order Now
+            Add to Cart
           </Button>
         </Box>
 
         <Box display="flex" gap={2} alignItems="center">
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: "green", color: "white" }}
-            onClick={() => navigate("/AddToCart")}
-          >
-            Add to Cart
-          </Button>
           <IconButton sx={{ color: "green" }} onClick={() => navigate("/Wishlist")}>
             <FavoriteBorderIcon />
           </IconButton>
